@@ -22,10 +22,10 @@ def normalize_continuous():
 	normalized_fnlwgt = [];
 	normalized_hour_per_week = [];
 
-	for i in range(0,len(age)-1):
-		normalized_age.append((age[i] - mean_age)/std_age);
-		normalized_fnlwgt.append((fnlwgt[i] - mean_fnlwgt)/std_fnlwgt);
-		normalized_hour_per_week.append((hour_per_week[i] - mean_hour_per_week)/std_hour_per_week);
+	for i in range(0,len(age)):
+		normalized_age.append((age[i] - min(age))/(max(age)-min(age)));
+		normalized_fnlwgt.append((fnlwgt[i] - min(fnlwgt))/(max(fnlwgt)-min(fnlwgt)));
+		normalized_hour_per_week.append((hour_per_week[i] - min(hour_per_week))/(max(hour_per_week)-min(hour_per_week)));
 	df['age'] = normalized_age;
 	df['fnlwgt'] = normalized_fnlwgt;
 	df['hour_per_week'] = normalized_hour_per_week;
@@ -142,12 +142,14 @@ if __name__ == '__main__':
 	df = pd.read_csv('income_tr.csv');
 	#histoplot();
 	#scatterplot(df['workclass'],df['class'])
-	#missing_data('marital_status');
-	missing_data_native_country()
-	#normalize_continuous();
+	#missing_data('age');
+	#missing_data('fnlwgt')
+	#missing_data('hour_per_week')
+	#missing_data_native_country()
+	normalize_continuous();
 	nominal_labels = ['workclass','education','marital_status','occupation','relationship','race','gender','native_country'];
 	#nominal_labels = ['marital_status'];
 	#normalize_nominal(nominal_labels);
 	#print(df)
-	boxplot_labels = ['age','workclass','education','marital_status','occupation']
-	#boxplot(boxplot_labels)
+	boxplot_labels = ['age','fnlwgt','hour_per_week']
+	boxplot(boxplot_labels)
