@@ -1,0 +1,54 @@
+Code can be run using jupyter notebook.
+
+
+
+To get the output csv for best k :
+
+In the 8th cell from the end
+Use :
+k = list(range(7,8,2))
+
+Uncomment :
+df_temp.to_csv("knn_output.csv")
+
+Otherwise the code will output confusion matrix and accuracy for the values in list k ( k = list(range(1,20,1)) ).
+
+
+
+
+For the roc curve :
+
+Uncomment :
+
+#ROC :
+
+# k = 7
+# df_temp = knn_main2(k,df_avg,0.5)
+# k = np.unique(df_temp["Posterior"])
+# k = sorted(k,reverse=True)
+
+and inside the for loop uncomment
+
+#Roc
+#df_temp = knn_main2(7,df_avg,i)
+
+comment :
+
+df_temp = knn_main2(i,df_avg,0.5)
+
+
+and uncomment
+
+
+# x = [0]
+# i = 0
+# while(x[i] < 1):
+#     x.append(x[i]+0.02)
+#     i = i + 1
+# plt.step(FP_rate, TP_rate, 'r-', x, x, 'b-')
+# plt.xlabel('False Poitive Rate')
+# plt.ylabel('True Positive Rate')
+# #plt.axis([0.0,1.0,0.6,1.0])
+# plt.show()
+
+in the 6th cell from the end
