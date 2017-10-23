@@ -1,0 +1,32 @@
+RBF :
+
+Best Accuracy : 72.7955
+Best C : 1000.0
+Best Gamma : 0.001
+Best recall : 0.7043010752688172 0.7485380116959064
+Best precision : 0.7090663058186739 0.7441860465116279
+
+Correctly Classified Instances        1164               72.7955 %
+Incorrectly Classified Instances       435               27.2045 %
+Kappa statistic                          0.453 
+Mean absolute error                      0.272 
+Root mean squared error                  0.5216
+Relative absolute error                 54.6719 %
+Root relative squared error            104.5677 %
+Coverage of cases (0.95 level)          72.7955 %
+Mean rel. region size (0.95 level)      50      %
+Total Number of Instances             1599     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.704    0.251    0.709      0.704    0.707      0.453    0.726     0.637     Low
+                 0.749    0.296    0.744      0.749    0.746      0.453    0.726     0.692     High
+Weighted Avg.    0.728    0.275    0.728      0.728    0.728      0.453    0.726     0.666     
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 524 220 |   a = Low
+ 215 640 |   b = High
+

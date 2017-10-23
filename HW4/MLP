@@ -1,0 +1,30 @@
+Best Accuracy : 75.8599
+Best l : 0.1
+Best m : 0.1
+# of epochs : 500
+
+Correctly Classified Instances        1213               75.8599 %
+Incorrectly Classified Instances       386               24.1401 %
+Kappa statistic                          0.5146
+Mean absolute error                      0.3287
+Root mean squared error                  0.412 
+Relative absolute error                 66.0532 %
+Root relative squared error             82.6083 %
+Coverage of cases (0.95 level)          99.4997 %
+Mean rel. region size (0.95 level)      94.5591 %
+Total Number of Instances             1599     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.737    0.222    0.743      0.737    0.740      0.515    0.826     0.786     Low
+                 0.778    0.263    0.772      0.778    0.775      0.515    0.826     0.845     High
+Weighted Avg.    0.759    0.244    0.758      0.759    0.759      0.515    0.826     0.817     
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 548 196 |   a = Low
+ 190 665 |   b = High
+
+
