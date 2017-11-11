@@ -148,7 +148,7 @@ def getIndexFromLabel(labels):
 
 def offTheShelf(x,true_clusters,true_centers,k):
 	# Number of clusters
-	kmeans = KMeans(n_clusters=k)
+	kmeans = KMeans(n_clusters=k,n_init=20,init='random',algorithm='full')
 	# Fitting the input data
 	kmeans = kmeans.fit(x)
 	# Getting the cluster labels
@@ -176,14 +176,14 @@ def plot(y,k_list,ylabel,title):
     s = list(range(0,len(k_list)))
     plt.xticks(s, my_xticks)
     print(s,y)
-    plt.plot(s,y)
+    plt.plot(s,y,marker="o")
     plt.xlabel("k")
     plt.ylabel(ylabel)
     plt.title(title)
     plt.show()
 
 if __name__ == '__main__':
-	wine = True
+	wine = False
 	x = []
 	t = []
 	t1 = []
@@ -198,15 +198,15 @@ if __name__ == '__main__':
 	best_cluster_sse = {}
 	best_ssb = 0
 	k = int(input("Enter number of clusters : "))
-	n = 12
-	n1 = 2
+	n = 1
+	n1 = 0
 	for i in range(n1,n):
 		print("Iteration : " + str(i))
 		k_centers,k_clusters = offTheShelf(x,true_clusters,true_centers,k)
 		sse,overall_sse,ssb = evaluationMetrics(x,true_clusters,true_centers,k_clusters,k_centers)
 		t.append(overall_sse)
 		t1.append(ssb)
-		if(i == 4):
+		if(i == 6):
 			best_sse = overall_sse
 			best_clusters = k_clusters
 			best_centers = k_centers

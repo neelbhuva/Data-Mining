@@ -1,0 +1,5 @@
+Use Jupyter Notebook to run the program K_means.ipynb
+
+By default K-means is run on TwoDimHard dataset and the output is stored in TwoDimHard_output.csv.
+
+To run K-means for wine dataset assign True to wine variable. By default it is false. Output for wine dataset is stored in wine_output.csv
