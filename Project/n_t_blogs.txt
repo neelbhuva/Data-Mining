@@ -1,0 +1,4 @@
+{"can't", "Don't", "wouldn't", "wasn't", "won't", "needn't", "Doesn't", "Woudn't", "isin't", "mean't", "doen't", "issn't", "Haven't", "Needn't", "Coudln't", "hadn't", "daren't", "learn't", "weren't", "GastroesomethingIdon't", "din't", "cann't", "doesn't", "wassn't", "Hadn't", "hasn't", "cabn't", "Aren't", "couldn't", "arn't", "musn't", "an't", "wern't", "coulldn't", "coudn't", "dosen't", "Can't", "cain't", "Wouldn't", "Couldn't", "younhaven't", "doon't", "didn't", "shan't", "Idon't", "mustn't", "Weren't", "mightn't", "Hasn't", "don't", "coudln't", "Mustn't", "Didn't", "dosn't", "areen't", "isn't", "shouldn't", "haven't", "drivesmeCRAZYpleasedon't", "wan't", "shoudln't", "Won't", "deesn't", "Shouldn't", "Isn't", "Kakadon't", "oughtn't", "winnerdidn't", "Woudln't", "Cain't", "havn't", "woudln't", "woudn't", "Wasn't", "aren't", "ain't", "Ain't", "on't"}
+
+Special cases : 
+can't, mean't, cabn't, shan't, won't, "ain't","on't"
