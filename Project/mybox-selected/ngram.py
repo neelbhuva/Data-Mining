@@ -74,6 +74,8 @@ class Ngram():
 		#self.wl = self.entire_text.split()
 		self.unigram_count = Counter(self.wl)
 		t1 = time.time()
+		#print("Word list and unigram count time : " + str(t1-t0))
+		#keywords = [' '.join(i) for i in itertools.product(self.wl, repeat = 3)]
 		self.N = len(self.wl)
 		self.V = len(set(self.wl)) # number of unique words in the vocabulary
 
@@ -95,6 +97,10 @@ class Ngram():
 			else:
 				self.bigrams_count[gram][0] += 1
 		self.bigrams_count["<s> <s>"][0] /= 3 
+		# self.bigrams.remove("<s> </s>")
+		# self.bigrams.remove("</s> <s>")
+		# self.bigrams.remove("<s> <s>")
+		# self.bigrams = list(set(self.bigrams))
 		self.bigrams = []
 		gc.collect()
 
@@ -311,16 +317,24 @@ class Ngram():
 					ind_prob.append(prob)
 					p += prob # add since prob are in terms of log
 					#p *= prob
+					#print(c,g)
 				else:
 					p += self.fivegrams_count[gram][1]
 					#p *= self.fivegrams_count[gram][1]
 					ind_prob.append(self.fivegrams_count[gram][1])
+					#print(self.fivegrams_count[gram][0],gram)
 				#print(p,end=" ")
 		#print(ind_prob)
+		# print("Multiplied prob : " + str(p))
+		#p = math.pow(10,p)
+		#p = math.exp(p)
 		sent = list(filter(lambda a: a != "<s>", sent))
 		N = len(sent)
 		entropy = (-1)*(p)/N
 		p = math.exp(entropy)
+		#p = 1/p
+		#p = p**(1/float(self.N))
+		#p = math.pow(p,(1/float(n)))
 		gc.collect()
 		return np.absolute(p)
 
@@ -354,6 +368,9 @@ class Ngram():
 			if(t1 in key):
 				w = key.split()	
 				t = ' '.join(w[0:len(w)-1])	
+				# if(w[0] == 'in' and w[1] == 'the' and w[2] == 'world'):
+				# 	print(w)
+				#print(t,t1)
 				if(t1 == t):
 					#print(text,t)
 					p[key] = value[1]
@@ -370,14 +387,28 @@ def printTime():
 	# print("Trigram init and pop time : " + str(t2-t12))
 	print("Total time : " + str(t4-t0))
 
+def cleanAndGetCounts(x,file):
+	
+	#x.tokenize(file," </s> "+start_token)
+	#x.getSpecifiedMatches("(\s+)(\d+)/(\d+)|([a-zA-Z]+)/([a-zA-Z]+)(\s+)")
+	x.cleanAndInsertEndToken(" </s> "+start_token)
+	
+	fd.close()
+	#x.readNGrams()
+	#number of ngrams to print
+	#x.delNGramsWithEndTokenInWrongPlace()
+	#x.getCounts()
+	p = 100
+	#x.printNGrams(p)
+	#x.saveNGramsCountToFile("blogs_count_bigram.txt")
 
 if __name__ == '__main__':
 	#file = "/home/neel/ngram data/en_US/blogs_test.txt"
 	f = input("What dataset you want to use? news, blog, or twitter? : ")
-	y = str(2)
-	file = "/home/neel/ngram data/en_US/train_" + f + y + ".txt"
-	test_file = "/home/neel/ngram data/en_US/test_" + f + y + ".txt"
-	fd = open("/home/neel/ngram data/en_US/blogs_test.txt")
+	y = str(10)
+	file = "/home/roy.174/ngram data/en_US/train_" + f + y + ".txt"
+	test_file = "/home/roy.174/ngram data/en_US/test_" + f + y + ".txt"
+	fd = open("/home/roy.174/ngram data/en_US/blogs_test.txt")
 	#fd = open("/home/neel/ngram data/en_US/en_US.blogs.txt")
 	#number of grams to be fetched from the text file
 	n = int(input("What model do you want to use ? 1-5 : "))
@@ -385,12 +416,15 @@ if __name__ == '__main__':
 	start_token = "<s> "*n
 	x = Ngram(fd,n)
 	t0 = time.time()
+	#cleanAndGetCounts(x,file)
 	x.tokenize(file," </s> "+start_token)
 	t1 = time.time()
 	x.getUnigramCountAndInitializeBigramMatrix()
 	t11 = time.time()
 	x.populateProbMatrix(2)
-
+	# print(x.bigrams_count)
+	# print(x.bigrams_count["i receive"][0],x.bigrams_count["i receive"][1])
+	# x.bigrams_count["i receive"][1] = 67
 	t12 = time.time()
 	if(x.n >= 3):
 		x.initializeAndPopulateTrigramMatrix(3)
@@ -411,19 +445,25 @@ if __name__ == '__main__':
 		x.unigram_count = dict()
 		gc.collect()
 	x.laplaceSmoothing(x.n)
+	#print(x.bigrams_count)
+	#print([(key,x.bigrams_count[key]) for key in sorted(x.bigrams_count)[:10]])
 	
 	test = "he is one of the"
 	x.test(test,5)
+
 	test = "whether we will do the"
 	x.test(test,5)
+
 	test = "i did not come to condemn the world but to save the world"
 	x.test(test,5)
+	
 	test = "i embrace them and try to keep them happy and"
 	x.test(test,5)
 	# x.saveProbabilitiesToFile("four_gram_prob.txt",4)
 	# x.saveProbabilitiesToFile("tri_gram_prob.txt",3)
 	t_f = open(test_file,'r',encoding='utf-8')
 	t = t_f.read()
+	#t = "How are you"
 	print("Perplexity : "+ str(x.perplexity(t,x.n)))
 	print("Number of Unique words : " + str(len(set(x.wl))))
 	t4 = time.time()
