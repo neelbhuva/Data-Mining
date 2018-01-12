@@ -1,0 +1,24 @@
+To run the code on linux use command :
+
+python3 filename.py 
+
+or 
+
+use ./bash.sh on linux machine
+
+
+
+clean.py :
+
+This code takes text file as input and outputs two files - train file and test file with necessary cleaning and insertion of start and end tokens. 
+
+To use a smaller training set open the file and change variable N in main fuction which is the number of lines. For large dataset (blog - N = 899288 lines) the code will not complete execution on intel i5 8 GB RAM. A better machine is required.
+
+ngram.py
+
+This program will calculate n-gram probabilities, perplexity on test set, and also predict next word given a sentence. Preferred dataset and model should be entered by the user upon prompt from command line. To give a specific sentence (no OOV words) for prediction change variable test in main function.
+
+visualize.py
+
+This program helps with Exploratory data analysis. Change variable n to visualize bigram/trigram/fourgram/fivegram counts. 
+
